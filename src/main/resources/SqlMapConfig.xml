@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd">-->
+<configuration>
+	<!-- 配置属性 
+		先加载内部属性，再加载外部属性，如果有同名属性会覆盖。
+	-->
+	<!--<properties resource="db.properties">
+	</properties>-->
+	<!-- 配置pojo别名 -->
+	<typeAliases>
+		<!-- <typeAlias type="cn.itheima.mybatis.po.User" alias="user"/> -->
+		<!-- 扫描包的形式创建别名，别名就是类名，不区分大小写 -->
+		<package name="com.cce.po"/>
+	</typeAliases>
+	<!-- 和spring整合后 environments配置将废除-->
+	<environments default="development">
+		<environment id="development">
+		<!-- 使用jdbc事务管理-->
+			<transactionManager type="JDBC" />
+		<!-- 数据库连接池-->
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://localhost:3306/first_mybatis?characterEncoding=utf-8" />
+				<property name="username" value="root" />
+				<property name="password" value="root" />
+			</dataSource>
+		</environment>
+	</environments>
+	<!-- 加载mapper文件 -->
+	<mappers>
+		<!-- xml -->
+		<!--<mapper resource="sqlmap/user.xml"/>-->
+		<!--注解-->
+		<mapper class="com.cce.dao.IUserDao"/>
+	</mappers>
+</configuration>
